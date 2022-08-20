@@ -1,0 +1,8 @@
+.popup__confirm {
+    color: #000000;
+    font-family: "Inter", "Arial", sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.21;
+    text-align: center;
+}
