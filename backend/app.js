@@ -1,4 +1,5 @@
 // app.js — входной файл
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -30,6 +31,12 @@ app.use('/users', isAuthorized, userRouter);
 // запускаем, при запросе на '/users' срабатывает роутер './routes/users'
 app.use('/cards', isAuthorized, cardRouter); // запускаем, при запросе на '/cards' срабатывает роутер './routes/cards'
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 // app.post('/signup', createUser);
 app.post('/signup', validateUser, createUser);
 
@@ -55,3 +62,4 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT);
+console.log(process.env.NODE_ENV);
