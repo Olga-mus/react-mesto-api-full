@@ -44,7 +44,7 @@ app.post('/signup', validateUser, createUser);
 
 app.post('/signin', validateAuthorization, login);
 
-app.use(pageNotFound);
+app.use(isAuthorized, pageNotFound);
 
 app.use(errorLogger); // подключаем логгер ошибок
 

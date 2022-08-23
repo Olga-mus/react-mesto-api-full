@@ -17,13 +17,13 @@ const userSchema = new mongoose.Schema({
   },
   owner: {
     type: mongoose.ObjectId,
+    required: true,
     ref: 'user',
   },
   likes: [{
     type: mongoose.ObjectId,
     default: [],
     ref: 'user',
-    required: true, // оно должно быть у каждого пользователя, так что имя — обязательное поле
   }],
   createdAt: {
     type: Date,

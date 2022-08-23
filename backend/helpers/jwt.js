@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken'); // импортируем модуль jsonwebtoken
 
-const { JWT_SECRET = 'dev-secret'} = process.env;
+const { JWT_SECRET = 'dev-secret' } = process.env;
 
 // payload - это то, что хотим зашифровать
 // eslint-disable-next-line arrow-body-style
