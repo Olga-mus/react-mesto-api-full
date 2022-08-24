@@ -18,7 +18,15 @@ const { validateUser, validateAuthorization } = require('./middlewares/validatio
 const { PORT = 6000 } = process.env;
 
 const app = express();
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: [
+    'https://site.ru',
+    'http://site.ru',
+    'http://localhost:3000',
+  ],
+  credentials: true,
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
