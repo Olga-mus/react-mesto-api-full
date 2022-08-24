@@ -21,8 +21,8 @@ const app = express();
 // app.use(cors());
 app.use(cors({
   origin: [
-    'https://site.ru',
-    'http://site.ru',
+    'https://api.tritonanta.nomoredomains.sbs',
+    'http://api.tritonanta.nomoredomains.sbs',
     'http://localhost:3000',
   ],
   credentials: true,
