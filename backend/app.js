@@ -18,7 +18,7 @@ const { validateUser, validateAuthorization } = require('./middlewares/validatio
 const { PORT = 6000 } = process.env;
 
 const app = express();
-// app.use(cors());
+// app.use(cors());..
 app.use(cors({
   origin: [
     'https://tritonanta.nomoredomains.sbs',
