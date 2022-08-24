@@ -14,7 +14,8 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { validateUser, validateAuthorization } = require('./middlewares/validation');
 
 // Слушаем 3000 порт
-const { PORT = 3000 } = process.env;
+//const { PORT = 3000 } = process.env;
+const { PORT = 6000 } = process.env;
 
 const app = express();
 app.use(cors());
@@ -26,10 +27,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb');
 
 app.use(requestLogger); // подключаем логгер запросов
 
-// app.use('/users', isAuthorized, userRouter);
-app.use('/users', isAuthorized, userRouter);
-// запускаем, при запросе на '/users' срабатывает роутер './routes/users'
-app.use('/cards', isAuthorized, cardRouter); // запускаем, при запросе на '/cards' срабатывает роутер './routes/cards'
+
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -43,6 +41,11 @@ app.post('/signup', validateUser, createUser);
 // app.post('/signin', login);
 
 app.post('/signin', validateAuthorization, login);
+
+// app.use('/users', isAuthorized, userRouter);
+app.use('/users', isAuthorized, userRouter);
+// запускаем, при запросе на '/users' срабатывает роутер './routes/users'
+app.use('/cards', isAuthorized, cardRouter); // запускаем, при запросе на '/cards' срабатывает роутер './routes/cards'
 
 app.use(isAuthorized, pageNotFound);
 
