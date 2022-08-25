@@ -71,7 +71,6 @@ export class Api {
   deleteLike(id, token) {
     return fetch(`${this.baseURL}/cards/likes/${id}`, {
       method: "DELETE",
-      credentials: 'include',
       headers: {
         authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -93,7 +92,6 @@ export class Api {
   updateAvatar(avatar, token) {
     return fetch(`${this.baseURL}/users/me/avatar`, {
       method: "PATCH",
-      credentials: 'include',
       headers: {
         authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -114,5 +112,5 @@ export class Api {
 }
 
 export const api = new Api({
-  baseURL: 'http://api.lerush.nomoredomains.sbs',
+  baseURL: 'https://api.tritonanta.nomorepartiesxyz.ru',
 })

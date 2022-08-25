@@ -56,5 +56,5 @@ export class Auth {
 }
 
 export const auth = new Auth({
-  baseURL: 'http://api.lerush.nomoredomains.sbs',
+  baseURL: 'https://api.tritonanta.nomorepartiesxyz.ru',
 })
