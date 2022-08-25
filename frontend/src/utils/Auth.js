@@ -10,7 +10,6 @@ export class Auth {
   register(email, password) {
     return fetch(`${this.baseURL}/signup`, {
       method: 'POST',
-      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -26,7 +25,6 @@ export class Auth {
   authorize(email, password) {
     return fetch(`${this.baseURL}/signin`, {
       method: 'POST',
-      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -44,13 +42,13 @@ export class Auth {
   }
 
   checkToken(token) {
+    console.log(token)
     return fetch(`${this.baseURL}/users/me`, {
       method: 'GET',
-      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
     })
       .then(res => this._handleError(res))
