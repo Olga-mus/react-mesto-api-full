@@ -1,0 +1,10 @@
+.popup__input_auth {
+    width: 354px;
+    height: 17px;
+    padding: 0 0 10px;
+    background-color: #000;
+    border-bottom: 2px solid #CCCCCC;
+    margin-bottom: 30px;
+    box-sizing: content-box;
+    color: #CCCCCC;
+}

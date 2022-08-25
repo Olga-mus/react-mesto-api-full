@@ -1,0 +1,7 @@
+.popup__profile_auth {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #CCCCCC;
+}
