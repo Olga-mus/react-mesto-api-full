@@ -10,7 +10,6 @@ export class Auth {
   register(email, password) {
     return fetch(`${this.baseURL}/signup`, {
       method: 'POST',
-      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -26,7 +25,6 @@ export class Auth {
   authorize(email, password) {
     return fetch(`${this.baseURL}/signin`, {
       method: 'POST',
-      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -46,11 +44,10 @@ export class Auth {
   checkToken(token) {
     return fetch(`${this.baseURL}/users/me`, {
       method: 'GET',
-      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
     })
       .then(res => this._handleError(res))
@@ -59,5 +56,5 @@ export class Auth {
 }
 
 export const auth = new Auth({
-  baseURL: 'https://api.tritonanta.nomoredomains.sbs',
+  baseURL: 'http://api.lerush.nomoredomains.sbs',
 })

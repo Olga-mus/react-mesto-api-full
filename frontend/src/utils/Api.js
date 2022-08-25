@@ -13,10 +13,8 @@ export class Api {
   getProfile(token) {
     return fetch(`${this.baseURL}/users/me`, {
       method: 'GET',
-      credentials: 'include',
       headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
+        authorization: `Bearer ${token}`
       }
     })
       .then(this._checkResponse);
@@ -24,10 +22,8 @@ export class Api {
 
   getInitialCards(token) {
     return fetch(`${this.baseURL}/cards`, {
-      credentials: 'include',
       headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
+        authorization: `Bearer ${token}`
       },
     })
       .then(this._checkResponse);
@@ -35,10 +31,9 @@ export class Api {
 
   editProfile({ name, about }, token) {
     return fetch(`${this.baseURL}/users/me`, {
-      credentials: 'include',
       method: "PATCH",
       headers: {
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -52,9 +47,8 @@ export class Api {
   addCard({ name, link }, token) {
     return fetch(`${this.baseURL}/cards`, {
       method: "POST",
-      credentials: 'include',
       headers: {
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -67,9 +61,8 @@ export class Api {
   deleteCard(id, token) {
     return fetch(`${this.baseURL}/cards/${id}`, {
       method: "DELETE",
-      credentials: 'include',
       headers: {
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
     }).then(this._checkResponse);
@@ -80,7 +73,7 @@ export class Api {
       method: "DELETE",
       credentials: 'include',
       headers: {
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
     }).then(this._checkResponse);
@@ -91,7 +84,7 @@ export class Api {
       method: "PUT",
       credentials: 'include',
       headers: {
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
     }).then(this._checkResponse);
@@ -102,7 +95,7 @@ export class Api {
       method: "PATCH",
       credentials: 'include',
       headers: {
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -121,5 +114,5 @@ export class Api {
 }
 
 export const api = new Api({
-  baseURL: 'https://api.tritonanta.nomoredomains.sbs',
+  baseURL: 'http://api.lerush.nomoredomains.sbs',
 })
