@@ -14,7 +14,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { validateUser, validateAuthorization } = require('./middlewares/validation');
 
 // Слушаем 3000 порт
-//const { PORT = 3000 } = process.env;
+// const { PORT = 3000 } = process.env;
 const { PORT = 3000 } = process.env;
 
 const app = express();
@@ -27,8 +27,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
 app.use(requestLogger); // подключаем логгер запросов
-
-
 
 app.get('/crash-test', () => {
   setTimeout(() => {
