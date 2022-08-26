@@ -81,55 +81,28 @@ module.exports.createUser = (req, res, next) => {
     });
 };
 
-// // логин
-// module.exports.login = (req, res, next) => {
-//   const { email, password } = req.body;
-//   User.findOne({ email })
-//     .select('+password')
-//     .then((user) => {
-//       if (!user) {
-//         // Инструкция throw генерирует исключение и обработка кода
-//         // переходит в следующий блок catch(next)
-//         throw new Unauthorized('Не авторизован');
-//       } else {
-//         return bcrypt
-//           .compare(password, user.password)
-//           .then((isPasswordCorrect) => {
-//             if (!isPasswordCorrect) {
-//               throw new Unauthorized('Не авторизован');
-//             } else {
-//               const token = generateToken({ _id: user._id.toString() });
-//               res.send({ token });
-//             }
-//           }).catch(() => next(new Unauthorized('Неправильный Email или пароль')));
-//       }
-//     })
-//     .catch(next);
-// };
-
+// логин
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-
-  User.findOne({ email }).select('+password')
+  User.findOne({ email })
+    .select('+password')
     .then((user) => {
       if (!user) {
-        throw new Unauthorized('Пользователь не существует.');
+        // Инструкция throw генерирует исключение и обработка кода
+        // переходит в следующий блок catch(next)
+        throw new Unauthorized('Не авторизован');
+      } else {
+        return bcrypt
+          .compare(password, user.password)
+          .then((isPasswordCorrect) => {
+            if (!isPasswordCorrect) {
+              throw new Unauthorized('Не авторизован');
+            } else {
+              const token = generateToken({ _id: user._id.toString() });
+              res.send({ token });
+            }
+          }).catch(() => next(new Unauthorized('Неправильный Email или пароль')));
       }
-
-      return Promise.all([
-        user,
-        bcrypt.compare(password, user.password),
-      ]);
-    })
-    .then(([user, isPasswordCorrect]) => {
-      if (!isPasswordCorrect) {
-        throw new Unauthorized('Не правильный email или пароль.');
-      }
-
-      return generateToken({ _id: user._id }, '7d');
-    })
-    .then((token) => {
-      res.send({ token });
     })
     .catch(next);
 };
