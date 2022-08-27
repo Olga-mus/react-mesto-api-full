@@ -56,5 +56,6 @@ export class Auth {
 }
 
 export const auth = new Auth({
-  baseURL: 'https://api.tritonanta.nomorepartiesxyz.ru',
+  // baseURL: 'http://localhost:3001',
+  baseURL: 'http://api.tritonanta.nomorepartiesxyz.ru',
 })

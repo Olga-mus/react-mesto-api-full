@@ -170,6 +170,7 @@ function App() {
           setLoggedIn(true);
           setUserEmail(email);
           history.push("/");
+          localStorage.setItem('jwt', res.token);
         }
       })
       .catch(() => {
