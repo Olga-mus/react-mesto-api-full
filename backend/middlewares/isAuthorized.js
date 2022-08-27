@@ -36,8 +36,7 @@ const isAuthorized = (req, res, next) => {
     payload = checkToken(token);
   } catch (err) {
     // eslint-disable-next-line consistent-return
-    return next(new Unauthorized(err));
-    // return next(new Unauthorized('Необходима авторизация'));
+    return next(new Unauthorized('Необходима авторизация'));
   }
   req.user = payload;
   next();

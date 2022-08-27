@@ -44,8 +44,8 @@ const validateCardId = celebrate({
       cardId: Joi
         .string()
         .hex()
-        .length(24)
-        .required(),
+        .required()
+        .length(24),
     }),
 });
 
@@ -63,8 +63,8 @@ const validateCurrentUser = celebrate({
       userId: Joi
         .string()
         .hex()
-        .length(24)
-        .required(),
+        .required()
+        .length(24),
     }),
 });
 
