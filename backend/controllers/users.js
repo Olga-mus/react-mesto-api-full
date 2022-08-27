@@ -100,6 +100,7 @@ module.exports.login = (req, res, next) => {
             } else {
               const token = generateToken({ _id: user._id.toString() });
               res.send({ token });
+              console.log('TOKEN', token);
             }
           }).catch(() => next(new Unauthorized('Неправильный Email или пароль')));
       }

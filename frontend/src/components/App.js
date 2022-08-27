@@ -42,14 +42,16 @@ function App() {
     history.push("/signin");
   }
 
+  ///////////////////////////////////////////////// мой 
   useEffect(() => {
-    const token = localStorage.getItem('jwt')
+    // const token = localStorage.getItem('jwt')
 
     if (token) {
       auth.checkToken(token)
         .then((data) => {
           setLoggedIn(true)
-          setUserEmail(data.data.email)
+          // setUserEmail(data.data.email)
+          setUserEmail(data.email)
           history.push('/')
         })
         .catch(err => console.log(err))
@@ -70,6 +72,43 @@ function App() {
         })
     }
   }, [loggedIn, token]);
+
+////////////////////////////////////////////////////////
+// Казаков
+
+// useEffect(() => {
+//   handleTokenCheck();
+// }, []);
+
+// function handleTokenCheck() {
+//   if (token) {
+//     auth.checkToken(token)
+//       .then(data => {
+//         if (data.email) {
+//           setUserEmail(data.email);
+//           setLoggedIn(true);
+//           history.push('/');
+//         }
+//       })
+//       .catch(console.error);
+//   }
+// };
+
+// useEffect(() => {
+//   if (loggedIn) {
+//     Promise.all([
+//       api.getProfile(localStorage.getItem(token)),
+//       api.getInitialCards(localStorage.getItem(token))
+//     ])
+//       .then(([data, cards]) => {
+//         setCards(cards);
+//         setCurrentUser(data);
+//       })
+//       .catch(console.error);
+//   }
+// }, [loggedIn, token]);
+
+//////////////////////////////////////
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке

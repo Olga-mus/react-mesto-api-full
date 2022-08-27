@@ -16,25 +16,33 @@ export class Api {
       method: 'GET',
       headers: {
         authorization: `Bearer ${token}`
+        // authorization: `Bearer ${localStorage.getItem('jwt')}`
+        // authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
       .then(this._checkResponse);
   }
 
   getInitialCards(token) {
+    console.log('TOKEN', token);
     return fetch(`${this.baseURL}/cards`, {
       headers: {
         authorization: `Bearer ${token}`
+        // authorization: `Bearer ${localStorage.getItem('jwt')}`
+        // authorization: `Bearer ${localStorage.getItem('token')}`
       },
     })
       .then(this._checkResponse);
   }
 
   editProfile({ name, about }, token) {
+    console.log('TOKEN', token);
     return fetch(`${this.baseURL}/users/me`, {
       method: "PATCH",
       headers: {
         authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        // authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -46,10 +54,13 @@ export class Api {
   }
 
   addCard({ name, link }, token) {
+    console.log('TOKEN', token);
     return fetch(`${this.baseURL}/cards`, {
       method: "POST",
       headers: {
         authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        // authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -60,10 +71,13 @@ export class Api {
   }
 
   deleteCard(id, token) {
+    console.log('TOKEN', token);
     return fetch(`${this.baseURL}/cards/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        // authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
       },
     }).then(this._checkResponse);
@@ -74,6 +88,8 @@ export class Api {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        // authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
       },
     }).then(this._checkResponse);
@@ -85,6 +101,7 @@ export class Api {
       credentials: 'include',
       headers: {
         authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
       },
     }).then(this._checkResponse);
@@ -95,6 +112,7 @@ export class Api {
       method: "PATCH",
       headers: {
         authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -113,6 +131,6 @@ export class Api {
 }
 
 export const api = new Api({
-  // baseURL: 'http://localhost:3001',
-  baseURL: 'http://api.tritonanta.nomorepartiesxyz.ru',
+  baseURL: 'http://localhost:3001',
+  // baseURL: 'http://api.tritonanta.nomorepartiesxyz.ru',
 })
