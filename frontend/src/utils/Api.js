@@ -13,6 +13,7 @@ export class Api {
   getProfile(token) {
     console.log('TOKEN', token);
     return fetch(`${this.baseURL}/users/me`, {
+      credentials: 'include',
       method: 'GET',
       headers: {
         authorization: `Bearer ${token}`
@@ -26,6 +27,7 @@ export class Api {
   getInitialCards(token) {
     console.log('TOKEN', token);
     return fetch(`${this.baseURL}/cards`, {
+      credentials: 'include',
       headers: {
         authorization: `Bearer ${token}`
         // authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -38,6 +40,7 @@ export class Api {
   editProfile({ name, about }, token) {
     console.log('TOKEN', token);
     return fetch(`${this.baseURL}/users/me`, {
+      credentials: 'include',
       method: "PATCH",
       headers: {
         authorization: `Bearer ${token}`,
@@ -56,6 +59,7 @@ export class Api {
   addCard({ name, link }, token) {
     console.log('TOKEN', token);
     return fetch(`${this.baseURL}/cards`, {
+      credentials: 'include',
       method: "POST",
       headers: {
         authorization: `Bearer ${token}`,
@@ -74,6 +78,7 @@ export class Api {
     console.log('TOKEN', token);
     return fetch(`${this.baseURL}/cards/${id}`, {
       method: "DELETE",
+      credentials: 'include',
       headers: {
         authorization: `Bearer ${token}`,
         // authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -86,6 +91,7 @@ export class Api {
   deleteLike(id, token) {
     return fetch(`${this.baseURL}/cards/likes/${id}`, {
       method: "DELETE",
+      credentials: 'include',
       headers: {
         authorization: `Bearer ${token}`,
         // authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -110,6 +116,7 @@ export class Api {
   updateAvatar(avatar, token) {
     return fetch(`${this.baseURL}/users/me/avatar`, {
       method: "PATCH",
+      credentials: 'include',
       headers: {
         authorization: `Bearer ${token}`,
         // authorization: `Bearer ${localStorage.getItem('jwt')}`,
