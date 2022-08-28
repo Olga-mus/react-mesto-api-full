@@ -128,16 +128,16 @@ export class Api {
     }).then(this._checkResponse);
   }
 
-  changeLikeCardStatus(id, isLiked) {
+  changeLikeCardStatus(id, isLiked, token) {
     if (isLiked) {
-      return this.addLike(id);
+      return this.addLike(id, token);
     } else {
-      return this.deleteLike(id);
+      return this.deleteLike(id, token);
     }
   }
 }
 
 export const api = new Api({
-  // baseURL: 'http://localhost:3001',
-  baseURL: 'http://api.tritonanta.nomorepartiesxyz.ru',
+  baseURL: 'http://localhost:3001',
+  // baseURL: 'http://api.tritonanta.nomorepartiesxyz.ru',
 })

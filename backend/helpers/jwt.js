@@ -7,9 +7,9 @@ const generateToken = (payload) => {
   return jwt.sign(payload, SECRET_KEY, { expiresIn: '7d' });// что хотим зашифровать и ключ
 };
 
+// eslint-disable-next-line arrow-body-style
 const checkToken = (token) => {
-  jwt.verify(token, SECRET_KEY);
-  console.log('token', token);
+  return jwt.verify(token, SECRET_KEY);
 };
 
 module.exports = {

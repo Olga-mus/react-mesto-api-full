@@ -116,7 +116,7 @@ function App() {
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
-      .changeLikeCardStatus(card._id, !isLiked)
+      .changeLikeCardStatus(card._id, !isLiked, token)
       .then((newCard) => {
         setCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
@@ -159,7 +159,7 @@ function App() {
 
   const handleAddPlaceSubmit = (card) => {
     api
-      .addCard(card)
+      .addCard(card, token)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
@@ -180,7 +180,7 @@ function App() {
 
   const handleUpdateUser = (data) => {
     api
-      .editProfile(data)
+      .editProfile(data, token)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -192,7 +192,7 @@ function App() {
 
   function handleUpdateAvatar({ avatar }) {
     api
-      .updateAvatar(avatar)
+      .updateAvatar(avatar, token)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
