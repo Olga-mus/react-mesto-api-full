@@ -139,6 +139,6 @@ export class Api {
 }
 
 export const api = new Api({
-  baseURL: 'http://localhost:3001',
-  // baseURL: 'http://api.tritonanta.nomorepartiesxyz.ru',
+  // baseURL: 'http://localhost:3001',
+  baseURL: 'http://api.tritonanta.nomorepartiesxyz.ru',
 })
