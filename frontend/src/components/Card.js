@@ -9,8 +9,9 @@ function Card({ onCardClick, onCardLike, onCardDelete, card }) {
 
   //должна ли в текущей карточке показываться иконка удаления.
   // Определяем, являемся ли мы владельцем текущей карточки
-  const isOwn = card.owner._id === currentUser._id;
-
+  // const isOwn = card.owner._id === currentUser._id;
+  const isOwn = card.owner === currentUser._id;
+ 
   // Создаём переменную, которую после зададим в `className` для кнопки удаления
   const cardDeleteButtonClassName = `element__button-delete ${
     isOwn ? "element__button-delete_visible" : "element__button-delete_hidden"
@@ -27,8 +28,10 @@ function Card({ onCardClick, onCardLike, onCardDelete, card }) {
   //поставили ли мы уже «лайк» этой карточке:
 
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-  const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
+
+   const isLiked = card.likes.some(id => id === currentUser._id);
+   
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
   const cardLikeButtonClassName = `element__button-like ${
     isLiked ? "element__like_active" : "element__button-like"
@@ -56,7 +59,7 @@ function Card({ onCardClick, onCardLike, onCardDelete, card }) {
       ></button>
       {/* <button className="element__button-delete"> */}
       {/* <img className="element__delete" src="<%=require('./images/element-delete.svg')%>" alt="Удалить"/> */}{" "}
-      */}
+      */
       {/* {/* <img className="element__delete" style={{ backgroundImage: `url(${card})` }}alt="Удалить"/> */}
       {/* </button> */}
       <button className={cardDeleteButtonClassName} onClick={handleDeleteClick}>

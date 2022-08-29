@@ -42,9 +42,9 @@ function App() {
     history.push("/signin");
   }
 
-  ///////////////////////////////////////////////// мой 
   useEffect(() => {
-    // const token = localStorage.getItem('jwt')
+    const token = localStorage.getItem('jwt')
+    console.log('token', token);
 
     if (token) {
       auth.checkToken(token)
@@ -65,7 +65,7 @@ function App() {
         .then(resData => {
           const [userData, cardList] = resData;
           setCurrentUser(userData.data);
-          setCards(cardList.data.reverse());
+          setCards(cardList.reverse());
         })
         .catch((err) => {
           console.log(err);
@@ -73,46 +73,9 @@ function App() {
     }
   }, [loggedIn, token]);
 
-////////////////////////////////////////////////////////
-// Казаков
-
-// useEffect(() => {
-//   handleTokenCheck();
-// }, []);
-
-// function handleTokenCheck() {
-//   if (token) {
-//     auth.checkToken(token)
-//       .then(data => {
-//         if (data.email) {
-//           setUserEmail(data.email);
-//           setLoggedIn(true);
-//           history.push('/');
-//         }
-//       })
-//       .catch(console.error);
-//   }
-// };
-
-// useEffect(() => {
-//   if (loggedIn) {
-//     Promise.all([
-//       api.getProfile(localStorage.getItem(token)),
-//       api.getInitialCards(localStorage.getItem(token))
-//     ])
-//       .then(([data, cards]) => {
-//         setCards(cards);
-//         setCurrentUser(data);
-//       })
-//       .catch(console.error);
-//   }
-// }, [loggedIn, token]);
-
-//////////////////////////////////////
-
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((id) => id === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
@@ -121,6 +84,7 @@ function App() {
         setCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
         );
+        console.log('card._id', card._id);
       })
       .catch((err) => {
         console.log(err);
@@ -141,7 +105,7 @@ function App() {
 
   function handleCardDelete(card) {
     api
-      .deleteCard(card._id)
+      .deleteCard(card._id, token)
       .then((res) => {
         console.log(res);
         setCards((prevState) =>

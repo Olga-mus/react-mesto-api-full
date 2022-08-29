@@ -75,7 +75,6 @@ export class Api {
   }
 
   deleteCard(id, token) {
-    console.log('TOKEN', token);
     return fetch(`${this.baseURL}/cards/${id}`, {
       method: "DELETE",
       credentials: 'include',
@@ -89,7 +88,7 @@ export class Api {
   }
 
   deleteLike(id, token) {
-    return fetch(`${this.baseURL}/cards/likes/${id}`, {
+    return fetch(`${this.baseURL}/cards/${id}/likes`, {
       method: "DELETE",
       credentials: 'include',
       headers: {
@@ -102,7 +101,7 @@ export class Api {
   }
 
   addLike(id, token) {
-    return fetch(`${this.baseURL}/cards/likes/${id}`, {
+    return fetch(`${this.baseURL}/cards/${id}/likes`, {
       method: "PUT",
       credentials: 'include',
       headers: {
@@ -129,9 +128,11 @@ export class Api {
   }
 
   changeLikeCardStatus(id, isLiked, token) {
+    console.log('id', id);
     if (isLiked) {
       return this.addLike(id, token);
     } else {
+      console.log(this.deleteLike(id, token));
       return this.deleteLike(id, token);
     }
   }
